@@ -1,0 +1,29 @@
+{
+  "author": "Mitsui <todays.mitsui@gmail.com>",
+  "name": "wasm-bindgen-with-tsify",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "test": "npm run build && npm run test:with_tsify && npm run test:without_tsify",
+    "test:with_tsify": "vitest run --dir with_tsify/tests/",
+    "test:without_tsify": "vitest run --dir without_tsify/tests/",
+
+    "build": "npm run build:with_tsify && npm run build:without_tsify",
+    "build:with_tsify": "wasm-pack build --out-name index --out-dir pkg with_tsify",
+    "build:without_tsify": "wasm-pack build --out-name index --out-dir pkg without_tsify",
+
+    "fmt": "npm run fmt:with_tsify && npm run fmt:without_tsify",
+    "fmt:with_tsify": "npx @biomejs/biome format --write with_tsify/tests/",
+    "fmt:without_tsify": "npx @biomejs/biome format --write without_tsify/tests/"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "vite-plugin-top-level-await": "^1.4.4",
+    "vite-plugin-wasm": "^3.3.0",
+    "vitest": "^2.1.4",
+    "wasm-pack": "^0.13.1"
+  }
+}
